@@ -1,0 +1,1016 @@
+{
+  "name": "LifeOs Juan Pablo",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "74a72a38-a4f7-45bf-9483-ec6efcb0cb34",
+      "name": "Telegram Trigger",
+      "webhookId": "67a62210-7e7c-40c5-88c2-9c51775ac7e2",
+      "credentials": {
+        "telegramApi": {
+          "id": "2WMF1sIBAjRZMPfQ",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "cc0676e8-3243-42b2-9be2-108bbd65820a",
+              "leftValue": "={{$json.message.text}}",
+              "rightValue": "Entrene",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        -16
+      ],
+      "id": "b4680252-ff7c-4169-88a4-f261561489be",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "={{$node[\"Telegram Trigger\"].json[\"message\"][\"chat\"][\"id\"]}}\n",
+        "text": "={{ $json.minutes \n  ? `💪 Entrenamiento registrado: ${$json.minutes} min` \n  : `💪 Entrenamiento detectado, pero no vi los minutos 😅` \n}}\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        784,
+        -272
+      ],
+      "id": "b6231197-623c-4ec4-9078-0ea35f8edd39",
+      "name": "Send a text message1",
+      "webhookId": "1f26837b-4b62-4c9d-a99c-e661480b90e4",
+      "credentials": {
+        "telegramApi": {
+          "id": "2WMF1sIBAjRZMPfQ",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{$json[\"message\"][\"chat\"][\"id\"]}}",
+        "text": "👋 Hola Juan Pablo. Estoy activo y listo para ayudarte 💪",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        800,
+        0
+      ],
+      "id": "f9324cfa-1573-4897-b2ea-f91f3d6e510a",
+      "name": "Send a text message2",
+      "webhookId": "334e1ca9-e191-41ad-a3a1-5eb75bf1bc0b",
+      "credentials": {
+        "telegramApi": {
+          "id": "2WMF1sIBAjRZMPfQ",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A",
+          "mode": "list",
+          "cachedResultName": "LifeOs Juan Pablo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha": "={{ new Date().toLocaleDateString() }}",
+            "Ejercisio": "=Entrenamiento",
+            "Min Ejercisio": "={{$json.minutes}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ejercisio",
+              "displayName": "Ejercisio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Min Ejercisio",
+              "displayName": "Min Ejercisio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estudio",
+              "displayName": "Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Min Estudio",
+              "displayName": "Min Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tema Estudio",
+              "displayName": "Tema Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tema Dificil",
+              "displayName": "Tema Dificil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gasto",
+              "displayName": "Gasto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ahorro total",
+              "displayName": "Ahorro total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        560,
+        -272
+      ],
+      "id": "6f8e628a-9e2c-4403-bd96-b7363b2efbae",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WWsCgDEsmsqqX0yR",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fc87c52c-07a0-4840-8434-8ea8d8b4526a",
+              "leftValue": "={{$json.message.text}}",
+              "rightValue": "Estudie",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        352,
+        144
+      ],
+      "id": "325f2c01-840a-444d-bc6c-15a05e537599",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A",
+          "mode": "list",
+          "cachedResultName": "LifeOs Juan Pablo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha": "={{ new Date().toLocaleDateString() }}",
+            "Min Estudio": "={{ $json.hours ? $json.hours * 60 : null }}",
+            "Estudio": "Estudio"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ejercisio",
+              "displayName": "Ejercisio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Min Ejercisio",
+              "displayName": "Min Ejercisio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estudio",
+              "displayName": "Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Min Estudio",
+              "displayName": "Min Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tema Estudio",
+              "displayName": "Tema Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tema Dificil",
+              "displayName": "Tema Dificil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gasto",
+              "displayName": "Gasto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ahorro total",
+              "displayName": "Ahorro total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        800,
+        128
+      ],
+      "id": "fed3c634-c148-4add-aa01-eb878fa0c395",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WWsCgDEsmsqqX0yR",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{$node[\"Telegram Trigger\"].json[\"message\"][\"chat\"][\"id\"]}}",
+        "text": "={{ $json.hours    ? `📚 Estudio registrado: ${$json.hours}h — ${$json.topic}`    : `📚 Estudio detectado, pero no vi el tiempo 😅`  }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1008,
+        128
+      ],
+      "id": "6c0f7d99-af0b-438b-b038-de716b954b71",
+      "name": "Send a text message",
+      "webhookId": "412d0f9b-bf6f-40a3-8b13-e5bc522a7421",
+      "credentials": {
+        "telegramApi": {
+          "id": "2WMF1sIBAjRZMPfQ",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "056d6a2d-fecd-400d-baf3-960d7599d48f",
+              "leftValue": "={{$json.message.text}}",
+              "rightValue": "Gasto",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        496,
+        320
+      ],
+      "id": "85d6a7a6-4223-49a7-98d8-58d84cd89b8f",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A",
+          "mode": "list",
+          "cachedResultName": "LifeOs Juan Pablo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha": "={{ new Date().toLocaleDateString() }}",
+            "Gasto": "Gasto",
+            "Ahorro total": "={{ -$json.amount }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ejercisio",
+              "displayName": "Ejercisio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Min Ejercisio",
+              "displayName": "Min Ejercisio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estudio",
+              "displayName": "Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Min Estudio",
+              "displayName": "Min Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tema Estudio",
+              "displayName": "Tema Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tema Dificil",
+              "displayName": "Tema Dificil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gasto",
+              "displayName": "Gasto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ahorro total",
+              "displayName": "Ahorro total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        928,
+        304
+      ],
+      "id": "afafde7a-b3a5-46b8-9680-8f3e0977c350",
+      "name": "Append row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WWsCgDEsmsqqX0yR",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{$node[\"Telegram Trigger\"].json[\"message\"][\"chat\"][\"id\"]}}",
+        "text": "={{ $json.amount    ? `💸 Gasto registrado: $${$json.amount} — ${$json.category}`    : `💸 Gasto detectado, pero no vi el monto 😅`  }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1136,
+        304
+      ],
+      "id": "57a1ed5c-1cf7-4635-825c-3c56732288ba",
+      "name": "Send a text message3",
+      "webhookId": "8ddff075-fcab-4417-bcb8-9f5153a10f81",
+      "credentials": {
+        "telegramApi": {
+          "id": "2WMF1sIBAjRZMPfQ",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3f066cf4-f394-480a-b26e-23a610fb44b6",
+              "leftValue": "={{$json.message.text}}",
+              "rightValue": "Ingreso",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        640,
+        464
+      ],
+      "id": "e5027630-a842-4eb2-a3a9-44d64c465d5d",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A",
+          "mode": "list",
+          "cachedResultName": "LifeOs Juan Pablo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ivcwXoWm7wn7y-2KAMg0WAjmQT-U4TXXG9bwH3_wJ_A/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha": "={{ new Date().toLocaleDateString() }}",
+            "Ahorro total": "={{ $json.amount }}",
+            "Gasto": "Ingreso"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ejercisio",
+              "displayName": "Ejercisio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Min Ejercisio",
+              "displayName": "Min Ejercisio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estudio",
+              "displayName": "Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Min Estudio",
+              "displayName": "Min Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tema Estudio",
+              "displayName": "Tema Estudio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tema Dificil",
+              "displayName": "Tema Dificil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gasto",
+              "displayName": "Gasto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ahorro total",
+              "displayName": "Ahorro total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1072,
+        448
+      ],
+      "id": "cc5ef4d9-5e59-41f0-a546-34f9ff605302",
+      "name": "Append row in sheet3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WWsCgDEsmsqqX0yR",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{$node[\"Telegram Trigger\"].json[\"message\"][\"chat\"][\"id\"]}}\n",
+        "text": "={{ $json.amount    ? `💰 Ingreso registrado: $${$json.amount} — ${$json.source}`    : `💰 Ingreso detectado, pero no vi el monto 😅`  }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1280,
+        448
+      ],
+      "id": "f9d969a3-d0ea-446b-9203-befe03e93eda",
+      "name": "Send a text message4",
+      "webhookId": "cee5c498-e116-466b-9f51-05017c05ab72",
+      "credentials": {
+        "telegramApi": {
+          "id": "2WMF1sIBAjRZMPfQ",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.message.text;\nconst match = text.match(/\\d+/);\n\nreturn [{\n  minutes: match ? parseInt(match[0]) : null\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        352,
+        -272
+      ],
+      "id": "748ddffe-c01e-4a28-acde-6bb18c2b4552",
+      "name": "Entreno"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.message.text;\n\n// horas (ej: 2h, 1.5h)\nconst timeMatch = text.match(/(\\d+(\\.\\d+)?)/);\nconst hours = timeMatch ? parseFloat(timeMatch[0]) : null;\n\n// tema (todo lo que viene después)\nconst topicMatch = text.replace(/estudi(e|é)?\\s*\\d+(\\.\\d+)?h?/i, '').trim();\n\nreturn [{\n  hours,\n  topic: topicMatch || 'General'\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        128
+      ],
+      "id": "dbca2f8b-a24c-48d4-8677-ffaded45004e",
+      "name": "Estudio"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.message.text;\n\n// monto\nconst amountMatch = text.match(/\\d+/);\nconst amount = amountMatch ? parseInt(amountMatch[0]) : null;\n\n// categoría (lo que queda después)\nconst category = text.replace(/gasto\\s*\\d+/i, '').trim();\n\nreturn [{\n  amount,\n  category: category || 'General'\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        304
+      ],
+      "id": "8a702e48-82e2-4d57-a371-3fc97863383d",
+      "name": "Gasto"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $json.message.text;\n\n// monto\nconst amountMatch = text.match(/\\d+/);\nconst amount = amountMatch ? parseInt(amountMatch[0]) : null;\n\n// fuente (lo que queda después)\nconst source = text.replace(/ingreso\\s*\\d+/i, '').trim();\n\nreturn [{\n  amount,\n  source: source || 'General'\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        864,
+        448
+      ],
+      "id": "e337c4f0-92e6-4082-895b-ebbeda22cae2",
+      "name": "Ingreso"
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Entreno",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Estudio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Gasto",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Ingreso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet3": {
+      "main": [
+        [
+          {
+            "node": "Send a text message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Entreno": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Estudio": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gasto": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ingreso": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}
